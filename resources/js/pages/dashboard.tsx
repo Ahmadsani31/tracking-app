@@ -3,6 +3,9 @@ import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 
+import { useMap } from 'react-leaflet/hooks'
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Dashboard',
@@ -26,6 +29,17 @@ export default function Dashboard() {
                         <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
                     </div>
                 </div>
+                <MapContainer style={{ height: 500, width: '100%' }} center={[-0.8887264, 100.3665022]} zoom={23} scrollWheelZoom={true}>
+                    <TileLayer
+                        attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>  contributors, <a href="https://maps.google.com/">Google Maps</a>'
+                        url="https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
+                    />
+                    <Marker position={[-0.8887264, 100.3665022]}>
+                        <Popup>
+                            A pretty CSS3 popup. <br /> Easily customizable.
+                        </Popup>
+                    </Marker>
+                </MapContainer>
                 <div className="border-sidebar-border/70 dark:border-sidebar-border relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border md:min-h-min">
                     <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
                 </div>
